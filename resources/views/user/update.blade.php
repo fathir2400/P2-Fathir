@@ -15,7 +15,7 @@
                             href="javascript:void(0);"> Edit <i
                               class="ti ti-chevrons-right flex-shrink-0 mx-3 overflow-visible text-textmuted rtl:rotate-180"></i>
                           </a> </li>
-                        
+
                       </ol>
                     </nav>
                   </div>
@@ -36,7 +36,7 @@
                         <i class="mdi mdi-refresh"></i>
                       </button>
                     </div>
-                    
+
                   </div>
                 </div>
 
@@ -46,29 +46,29 @@
                                     <div class="box-title">
                                         EDIT
                                     </div>
-                                   
+
                                 </div>
                                 <div class="box-body !-mt-4">
-                                    <form action="{{ url ('Users/'.$users->id) }}" method="POST" enctype="multipart/form-data"> 
+                                    <form action="{{ url ('Users/'.$user->id) }}" method="POST" enctype="multipart/form-data">
                                         @method('PUT')
                                         @csrf
-                                        
+
                                     <div class="xl:col-span-12 col-span-12 mt-0">
                                         <label for="text" class="form-label">Name</label>
                                         <input type="text" class="form-control " name="name" placeholder="nama lengkap"
-                                        value="{{old('name',$users->name)}}">
-                                        
+                                        value="{{old('name',$user->name)}}">
+
                                         @error('name')
                                             <div class="invalid-feedback">
                                                 {{$message}}
                                             </div>
                                             @enderror
                                     </div>
-                                   
+
                                     <div class="xl:col-span-12 col-span-12 mt-0">
                                         <label for="email" class="form-label">Email</label>
                                         <input type="email" class="form-control "  name="email" placeholder="email"
-                                        value="{{old('email',$users->email)}}">
+                                        value="{{old('email',$user->email)}}">
                                         @error('email')
                                             <div class="invalid-feedback">
                                                 {{$message}}
@@ -76,9 +76,22 @@
                                             @enderror
                                     </div>
                                     <div class="xl:col-span-12 col-span-12 mt-0">
+                                        <label for="jenkel" class="form-label">Jenis Kelamin</label>
+                                        <select class="form-control" name="jenkel" id="jenkel">
+                                            <option value="Laki-laki" {{ old('jenkel', $user->jenkel ?? '') == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+                                            <option value="Perempuan" {{ old('jenkel', $user->jenkel ?? '') == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+                                        </select>
+                                        @error('jenkel')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="xl:col-span-12 col-span-12 mt-0">
                                         <label for="text" class="form-label">Telepon</label>
                                         <input type="number" class="form-control " name="telepon" placeholder="masukan telepon"
-                                        value="{{old('telepon',$users->telepon)}}">
+                                        value="{{old('telepon',$user->telepon)}}">
                                         @error('telepon')
                                             <div class="invalid-feedback">
                                                 {{$message}}
@@ -88,7 +101,7 @@
                                     <div class="xl:col-span-12 col-span-12 mt-0">
                                         <label for="text" class="form-label">Alamat</label>
                                         <input type="text" class="form-control " name="alamat" placeholder="masukan alamat"
-                                        value="{{old('alamat',$users->alamat)}}">
+                                        value="{{old('alamat',$user->alamat)}}">
                                         @error('telepon')
                                             <div class="invalid-feedback">
                                                 {{$message}}
@@ -102,12 +115,12 @@
                                       file:bg-light file:me-4
                                       file:py-3 file:px-4
                                       dark:file:bg-black/20 dark:file:text-white/50">
-                                      @empty($users->foto_profile)
+                                      @empty($user->foto_profile)
                                         <p>foto tidak ada</p>
                                         @else
                                         <div class="mt-2">
                                           <small>Foto lama:</small>
-                                          <img src="{{asset('storage/foto-profile/'.$users->foto_profile) }}" class="img-preview" alt="Foto pengguna" width="120px">
+                                          <img src="{{asset('storage/foto-profile/'.$user->foto_profile) }}" class="img-preview" alt="Foto pengguna" width="120px">
                                         </div>
                                         @endempty
                                       @error('foto_profile')
@@ -116,33 +129,33 @@
                                             </div>
                                             @enderror
                                 </div>
-                                    
-                                
+
+
     <label for="level">Level</label>
     @if(auth()->user()->role === 'pengguna' )
         <input type="text" class="form-control" value="{{ auth()->user()->role }}" readonly>
     @else
         <select name="role" class="form-control" id="level">
-            <option value="admin" {{$users->role == "admin" ? 'selected' : ''}}>Admin</option>
-            <option value="supervisor" {{$users->role == "Supervisor" ? 'selected' : ''}}>Supervisor</option>
-            <option value="petugas" {{$users->role == "petugas" ? 'selected' : ''}}>Petugas</option>
-            <option value="teknisi" {{$users->role == "teknisi" ? 'selected' : ''}}>Teknisi</option>
-            <option value="pengguna" {{$users->role == "pengguna" ? 'selected' : ''}}>Pengguna</option>
+            <option value="admin" {{$user->role == "admin" ? 'selected' : ''}}>Admin</option>
+            <option value="supervisor" {{$user->role == "Supervisor" ? 'selected' : ''}}>Supervisor</option>
+            <option value="petugas" {{$user->role == "petugas" ? 'selected' : ''}}>Petugas</option>
+            <option value="teknisi" {{$user->role == "teknisi" ? 'selected' : ''}}>Teknisi</option>
+            <option value="pengguna" {{$user->role == "pengguna" ? 'selected' : ''}}>Pengguna</option>
         </select>
     @endif
 
                                     <!-- <label for="level" class="form-label">Level</label>
                                     <select  id="user_id" name="level" class="form-control">
-                                        @foreach ($levels as $level)
-                                            <option value="{{ $level }}" {{ old('level', $users->level) == $level ? 'selected' : '' }}>
-                                                {{ $level }}
+                                        {{-- @foreach ($role as $role)
+                                            <option value="{{ $role }}" {{ old('role', $user->role) == $role ? 'selected' : '' }}>
+                                                {{ $role }}
                                             </option>
-                                        @endforeach
+                                        @endforeach --}}
 </select> -->
                                         <button type="submit" class="ti-btn ti-btn-primary-full mt-2" onclick="return confirm('apakah anda yakin ingin mengupdate?')">Submit</button>
                                     </form>
                                 </div>
-                               
+
 
                                 </div>
                             </div>

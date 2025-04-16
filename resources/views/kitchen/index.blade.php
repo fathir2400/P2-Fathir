@@ -1359,7 +1359,7 @@ $setting = DB::table('setting')->first();
     <!-- ========== END Search Modal ========== -->
 
     
-@include('layout.footer')
+
 
   </div>
 

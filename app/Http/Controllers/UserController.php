@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Request\UserRequest;
 use App\Http\Requests\Request\UserRequestUpdate;
 
+use App\Models\Outlet;
 use App\Models\User;
 use Exception;
 use illuminate\Http\Request;
@@ -16,61 +17,88 @@ use function Laravel\Prompts\password;
 
 class UserController extends Controller
 {
-    public function index(){
-     $users = User::get();
-     return view('user.index', compact('users'));
-    }
-    public function create(){
-        $users = User::all();
-       
-        return view('user.create',[
-            'users' => $users,
-            
-        ]);
-        
+    public function index()
+    {
+        $users = User::with('outlet')->paginate(10); // Ambil user & outlet-nya
+        return view('user.index', compact('users'));
     }
 
-    public function store(UserRequest $request){
-        $data = $request->validated();
-        $user = Auth::user();
-        DB::beginTransaction();
 
-        try {
-            if ($request->hasFile('foto_profile')){
-                $checkingFile = $request->file('foto_profile');
-                $filename = $checkingFile->getClientOriginalName();
-                $path = $checkingFile->storeAs('public/foto-profile',$filename);
-                $data ['foto_profile'] = $filename;
-            }
-            $data ['password'] = bcrypt($data['password']);
-            $user = User::create($data);
-            
-            DB::commit();
+    public function create()
+{
+    $outlets = Outlet::all(); // ambil semua outlet dari database
+    return view('user.create', compact('outlets'));
+}
+public function listAdmins()
+{
+    $admins = User::with('outlet')->where('role', 'admin')->orderBy('name')->paginate(10);
+    $outlets = Outlet::all();
+    return view('user.list_admin', compact('admins', 'outlets'));
+}
+
+public function listSupervisor()
+{
+    $supervisors = User::with('outlet')->where('role', 'supervisor')->orderBy('name')->paginate(10);
+    $outlets = Outlet::all();
+    return view('user.list_supervisor', compact('supervisors', 'outlets'));
+}
+public function listKasir()
+{
+    $kasirs = User::with('outlet')->where('role', 'kasir')->orderBy('name')->paginate(10); // Ambil data user + relasi outlet
+    $outlets = Outlet::all(); // Ambil semua outlet
+    return view('user.list_kasir', compact('kasirs', 'outlets')); // Kirim ke view
+}
+public function listKitchen()
+{
+    $kitchens = User::with('outlet')->where('role', 'kitchen')->orderBy('name')->paginate(10);
+    $outlets = Outlet::all();
+    return view('user.list_kitchen', compact('kitchens', 'outlets'));
+}
+public function listWaiters()
+{
+    $waiters = User::with('outlet')->where('role', 'waiters')->orderBy('name')->paginate(10);
+    $outlets = Outlet::all();
+    return view('user.list_waiters', compact('waiters', 'outlets'));
+}
+public function listPelanggan()
+{
+    $pelanggans = User::with('outlet')->where('role', 'pelanggan')->orderBy('name')->paginate(10);
+    $outlets = Outlet::all();
+    return view('user.list_pelanggan', compact('pelanggans', 'outlets'));
+}
 
 
-            return redirect(url('Users'))->with('succes', 'user has been created');
-        }catch(Exception $e){
-            info($e->getMessage());
-            DB::roleBack();
+public function store(UserRequest $request)
+{
+    $data = $request->validated();
+    $data['outlet_id'] = $request->outlet_id;
 
-            return response()->json([
-                "code" => 421,
-                "status" => "Error",
-                "message" => $e->getLine() . ' ' . $e->getMessage()
-            ]);
+    DB::beginTransaction();
+
+    try {
+        if ($request->hasFile('foto_profile')) {
+            $checkingFile = $request->file('foto_profile');
+            $filename = $checkingFile->getClientOriginalName();
+            $request->file('foto_profile')->storeAs('public/foto-profile', $filename);
+            $data['foto_profile'] = $filename;
         }
 
-    }
-    public function edit(string $id_user){
-        $levels = User::distinct('level')->pluck('role');
-        $users = User::find($id_user);
-      
+        $data['password'] = bcrypt($data['password']);
+        User::create($data);
 
-        return view('user.update', [
-            'users' => $users,
-            'levels' => $levels,
-           
-        ]);
+        DB::commit();
+        return redirect()->route('users.index')->with('success', 'User berhasil ditambahkan');
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect()->back()->with('error', 'Terjadi kesalahan saat menyimpan data.');
+    }
+}
+    public function edit($id)
+    {
+        $user = User::findOrFail($id);
+        $outlets = Outlet::all();
+        return view('user.update', compact('user', 'outlets'));
+
     }
     public function update(UserRequestUpdate $request, $id_user){
         $data = $request->validated();
@@ -93,7 +121,7 @@ class UserController extends Controller
 
         DB::commit();
 
-        return redirect('/Users')->with('succes', 'user has been update');
+        return back()->with('success', 'User has been updated successfully');
         } catch(Exception $e) {
             info($e->getMessage());
             DB::rollBack();
@@ -116,17 +144,17 @@ class UserController extends Controller
         }
     }
 
-    
+
     public function pengguna(){
         $siswa = User::where('role', 'pengguna')->get();
         return view('pengguna.index', [
             'users' => $siswa
         ]);
     }
-    
-    
+
+
     public function show(Request $request){
-        $users = User::get();      
+        $users = User::get();
         return view('user.invoice',compact('users'));
        }
 }

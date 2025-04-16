@@ -52,8 +52,8 @@
                                 <td class="px-3 py-2">{{ $item->keterangan }}</td>
                                 <td class="px-3 py-2">
                                     <div class="flex gap-2">
-                                    <a href="javascript:void(0);" class="ti-btn ti-btn-sm ti-btn-success-full edit-btn" 
-   data-id="{{ $item->id_kategori }}" data-kode="{{ $item->kode_kategori }}" 
+                                    <a href="javascript:void(0);" class="ti-btn ti-btn-sm ti-btn-success-full edit-btn"
+   data-id="{{ $item->id_kategori }}" data-kode="{{ $item->kode_kategori }}"
    data-nama="{{ $item->nama }}" data-keterangan="{{ $item->keterangan }}">
    <i class="ri-edit-line"></i>
 </a>
@@ -62,7 +62,7 @@
                                             @method('DELETE')
                                             <button type="submit" class="ti-btn ti-btn-sm ti-btn-danger-full"
                                                 onclick="return confirm('Yakin ingin menghapus {{ $item->nama_kategori }}?')">
-                                                <i class="bi bi-trash"></i> 
+                                                <i class="bi bi-trash"></i>
                                             </button>
                                         </form>
                                     </div>

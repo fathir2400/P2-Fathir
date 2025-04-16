@@ -19,17 +19,19 @@ class UserRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
-    {
-        return [
-           
-            'name' => 'required|max:255',
-            'email' => 'required|email|unique:users,email',
-            'telepon' => 'nullable|min:6',
-            'alamat' => 'required|min:6',
-            'password' => 'required|min:8|confirmed',
-            'password_confirmation' => 'required|min:8',
-            'foto_profile'          => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ];
-    }
+    public function rules()
+{
+    return [
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|unique:users,email',
+        'telepon' => 'required|string|max:15',
+        'jenkel' => 'required|in:Laki-laki,Perempuan',
+        'role' => 'required|in:admin,kasir,owner',
+        'password' => 'required|string|min:6|confirmed',
+        'foto_profile' => 'nullable|image|mimes:jpg,jpeg,png',
+        'outlet_id' => 'required|exists:outlets,id', // <-- Tambahkan baris ini
+    ];
+}
+
+
 }

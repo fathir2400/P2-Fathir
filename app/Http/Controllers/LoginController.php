@@ -31,14 +31,16 @@ class LoginController extends Controller
                 return redirect('admin');
             }elseif(Auth::user()->role == 'supervisor'){
                 return redirect('supervisor');
-            } elseif(Auth::user()->role == 'petugas'){
-                return redirect('petugas');
-            }elseif(Auth::user()->role == 'teknisi'){
-                return redirect('teknisi');
-            }elseif(Auth::user()->role == 'pengguna'){
-                return redirect('pengguna');
+            } elseif(Auth::user()->role == 'kasir'){
+                return redirect('kasir');
+            }elseif(Auth::user()->role == 'kitchen'){
+                return redirect('kitchen');
+            }elseif(Auth::user()->role == 'waiters'){
+                return redirect('waiters');
+            }elseif(Auth::user()->role == 'pelanggan'){
+                return redirect('pelanggan');
             }
-            
+
         }else{
             return redirect('')->withErrors('username dan password yang di masukan tidak sesuail')->withInput();
         }

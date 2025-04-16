@@ -15,7 +15,7 @@ class UserAkses
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next, $role): Response
+    public function handle(Request $request, Closure $next, $role):Response
     {
         if(auth()->user()->role == $role){
             return $next($request);
@@ -24,12 +24,14 @@ class UserAkses
             return redirect('admin');
         } elseif(Auth::user()->role == 'supervisor'){
             return redirect('supervisor');
-        }elseif(Auth::user()->role == 'petugas'){
-            return redirect('petugas');
-        }elseif(Auth::user()->role == 'teknisi'){
-            return redirect('teknisi');
-        }elseif(Auth::user()->role == 'pengguna'){
-            return redirect('pengguna');
+        }elseif(Auth::user()->role == 'kasir'){
+            return redirect('kasir');
+        }elseif(Auth::user()->role == 'kichent'){
+            return redirect('kichent');
+        }elseif(Auth::user()->role == 'waiters'){
+            return redirect('waiters');
+        }elseif(Auth::user()->role == 'pelanggan'){
+            return redirect('pelanggan');
         }
     }
 }

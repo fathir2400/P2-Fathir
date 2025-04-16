@@ -480,7 +480,7 @@ $setting = DB::table('setting')->first();
               id="notification-item" data-hs-tab="#notification" aria-controls="notification" role="tab">
               <i class="fe fe-bell text-[.9375rem] me-2 inline-flex"></i> Notifications
             </button>
-            
+
           </div>
         </ul>
         <div class="tab-content !border-0 ">
@@ -1082,7 +1082,7 @@ $setting = DB::table('setting')->first();
     <!--End modal -->
 
     <!-- Start::app-sidebar -->
-    
+
 
     </aside>
     <!-- End::app-sidebar -->
@@ -1094,7 +1094,7 @@ $setting = DB::table('setting')->first();
 
         <!-- Start::page-header -->
         <!-- Page Header -->
-       
+
 
 @section('content')
 <div class="md:flex block items-center justify-between mb-6 mt-[2rem]  page-header-breadcrumb">
@@ -1106,7 +1106,7 @@ $setting = DB::table('setting')->first();
                     href="javascript:void(0);"> Dashboard <i
                       class="ti ti-chevrons-right flex-shrink-0 mx-3 overflow-visible text-textmuted rtl:rotate-180"></i>
                   </a> </li>
-               
+
               </ol>
             </nav>
           </div>
@@ -1252,7 +1252,7 @@ $setting = DB::table('setting')->first();
         <!-- Page Header Close -->
         <!-- End::page-header -->
 
-        
+
 
       </div>
     </div>
@@ -1358,8 +1358,8 @@ $setting = DB::table('setting')->first();
     </div>
     <!-- ========== END Search Modal ========== -->
 
-    
-@include('layout.footer')
+
+
 
   </div>
 
@@ -1399,7 +1399,7 @@ $setting = DB::table('setting')->first();
   <!-- CRM-Dashboard -->
   <script src="{{ asset('valex/js/ecommercedashboard.js') }}"></script>
 
-  
+
   <!-- Custom-Switcher JS -->
   <script src="{{ asset('valex/js/custom-switcher.js') }}"></script>
 

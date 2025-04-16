@@ -10,6 +10,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JamkerjaController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\MerkController;
+use App\Http\Controllers\OutletController;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\PengajuanController;
 use App\Http\Controllers\RuanganController;
@@ -46,10 +47,11 @@ Route::get('/home',function(){
 
 Route::middleware(['auth'])->group(function(){
     Route::get('/admin',[adminController::class,'index'])->middleware('userAkses:admin');
-    Route::get('/supervisor',[adminController::class,'pengguna'])->middleware('userAkses:supervisor');
-    Route::get('/petugas',[adminController::class,'petugas'])->middleware('userAkses:petugas');
-    Route::get('/teknisi',[adminController::class,'pengguna'])->middleware('userAkses:teknisi');
-    Route::get('/pengguna',[adminController::class,'pengguna'])->middleware('userAkses:pengguna');
+    Route::get('/supervisor',[adminController::class,'supervisor'])->middleware('userAkses:supervisor');
+    Route::get('/kasir',[adminController::class,'kasir'])->middleware('userAkses:kasir');
+    Route::get('/weiters',[adminController::class,'weiters'])->middleware('userAkses:weiters');
+    Route::get('/kitchent',[adminController::class,'kichent'])->middleware('userAkses:kichent');
+    Route::get('/pelanggan',[adminController::class,'pelanggan'])->middleware('userAkses:pelanggan');
     Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 });
 
@@ -60,6 +62,13 @@ Route::get('/dashboard',[HomeController::class,'index'])->name('dashboard');
 Route::resource('/Users',UserController::class);
 Route::get('/Users/invoice',[UserController::class,'show'])->name('Users.invoice');
 Route::get('/siswa',[UserController::class,'siswa'])->name('siswa');
+Route::get('/admins',[UserController::class,'listAdmins'])->name('list_admin');
+Route::get('/supervisors',[UserController::class,'listSupervisor'])->name('list_supervisor');
+Route::get('/kasirs',[UserController::class,'listKasir'])->name('list_kasir');
+Route::get('/kitchens',[UserController::class,'listKitchen'])->name('list_kitchen');
+Route::get('/waiters',[UserController::class,'listWaiters'])->name('list_waiters');
+Route::get('/pelanggans',[UserController::class,'listPelanggan'])->name('list_pelanggan');
+
 // Route::get('/siswa/{kode_kelas}',[UserController::class,'view'])->name('siswa.view');
 // Route::get('/siswa/invoice',[MetodeController::class,'show'])->name('siswa.invoice');
 
@@ -67,6 +76,13 @@ Route::post('/store',[UserController::class,'store'])->name('Users.store');
 
 Route::get('/setting', [SettingControlle::class, 'index'])->name('setting.index');
 Route::post('/setting/{id_setting}', [SettingControlle::class, 'update'])->name('setting.update');
+
+Route::resource('/kategori',KategoriController::class);
+
+Route::get('/kategori/invoice',[KategoriController::class,'show'])->name('kategori.invoice');
+
+Route::resource('outlet', OutletController::class);
+
 
 
 // Route::get('/', function () {

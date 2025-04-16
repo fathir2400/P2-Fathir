@@ -15,7 +15,7 @@
                             href="javascript:void(0);"> User <i
                               class="ti ti-chevrons-right flex-shrink-0 mx-3 overflow-visible text-textmuted rtl:rotate-180"></i>
                           </a> </li>
-                        
+
                       </ol>
                     </nav>
                   </div>
@@ -36,7 +36,7 @@
                         <i class="mdi mdi-refresh"></i>
                       </button>
                     </div>
-                    
+
                   </div>
                 </div>
                 <!-- Page Header Close -->
@@ -51,14 +51,14 @@
                                         Tambah
                                         <i class="fe fe-arrow-right rtl:rotate-180 ms-2 rtl:ms-0 align-middle"></i>
                                     </a>
-                                   
+
                                     <a href="{{ route ('Users.invoice') }}" class="ti-btn ti-btn-secondary-full">
                                         invoice
                                         <i class="fe fe-arrow-right rtl:rotate-180 ms-2 rtl:ms-0 align-middle"></i>
                                     </a>
-                                
+
                             </div>
-                            
+
                                     <table class="table">
                                         <thead>
                                             <tr class="border-b border-defaultborder">
@@ -66,7 +66,7 @@
                                                 <th scope="col" class="text-start">Nama</th>
                                                 <th scope="col" class="text-start">Email</th>
                                                 <th scope="col" class="text-start">Telepon</th>
-                                                <th scope="col" class="text-start">Alamat</th>
+                                                <th scope="col" class="text-start">Jenkel</th>
                                                 <th scope="col" class="text-start">foto</th>
                                                 <th scope="col" class="text-start">Role</th>
                                                 <th scope="col" class="text-start">Action</th>
@@ -76,16 +76,16 @@
                                         @foreach ($users as $key =>$item)
                                             <tr class="border-b border-defaultborder">
                                             <td>{{ $key + 1}}</td>
-                                            <td>{{ $item->name }}</td>  
+                                            <td>{{ $item->name }}</td>
                                             <td>{{ $item->email }}</td>
                                             <td>{{ $item->telepon }}</td>
-                                            <td>{{ $item->alamat }}</td> 
+                                            <td>{{ $item->jenkel }}</td>
                                             <td>
                                             <img src="{{asset('storage/foto-profile/'. $item->foto_profile) }}" width="50" height="50" alt="Foto_profile">
                                             </td>
                                             <td>{{ $item->role }}</td>
-                                             
-                                                
+
+
                                                 <td>
                                                     <div class="hstack flex gap-3 text-[.9375rem]">
                                                     <a aria-label="anchor" href="{{url('Users/'.$item->id.'/edit')}}"
@@ -95,23 +95,23 @@
                                                                   @csrf
                                                                   @method('DELETE')
                                                         <button aria-label="anchor" type="submit"
-                                                            class="ti-btn ti-btn-icon ti-btn-sm ti-btn-danger-full" onclick="return confirm('apakah andan ingin menghapus data *{{$item->name}}*?')"><i 
+                                                            class="ti-btn ti-btn-icon ti-btn-sm ti-btn-danger-full" onclick="return confirm('apakah andan ingin menghapus data *{{$item->name}}*?')"><i
                                                             class="bi bi-trash"></i>
 </button>
                                                           </form>
-                                                        
+
                                                     </div>
                                                 </td>
                                             </tr>
                                           @endforeach
-                                                
-                                                
+
+
                                         </tbody>
                                     </table>
-                               
+
                             </div>
                             <div class="box-footer hidden border-t-0">
-                                
+
                             </div>
                         </div>
                     </div>
@@ -119,7 +119,7 @@
                 <!-- End:: row-11 -->
 
                 <!-- Start:: row-12 -->
-                
+
                 <!-- End:: row-12 -->
 
             </div>

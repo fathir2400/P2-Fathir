@@ -43,7 +43,7 @@
                   <path
                     d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z">
                   </path>
-                </svg> </a> 
+                </svg> </a>
 
                 <div class="hs-dropdown-menu ti-dropdown-menu hidden" aria-labelledby="hs-dropdown-auto-close-inside">
                   <div>
@@ -430,7 +430,7 @@
             <!--End Header Notifictaion -->
 
             <!-- Fullscreen -->
-           
+
             <!-- <div class="header-element header-fullscreen py-[1rem] md:px-[0.65rem] px-2"> -->
               <!-- Start::header-link -->
               <!-- <a aria-label="anchor" onclick="openFullscreen();" href="javascript:void(0);"
@@ -466,7 +466,7 @@
                 @if(Auth::user()->foto_profile)
                 <img src="{{asset('storage/foto-profile/'. Auth::user()->foto_profile) }}" width="37" height="37"
                   alt="Image Description">
-                @endif 
+                @endif
 
               </button>
               <div
@@ -486,7 +486,7 @@
                   </li>
                   <li><a class="dropdown-item text-defaulttextcolor flex " href="{{ url('Users/' . auth()->user()->id . '/edit') }}"><i
                         class="bx bx-user-circle text-[1.125rem] me-2 opacity-[0.7]"></i>Profile</a></li>
-                  
+
                   <li><a class="dropdown-item text-defaulttextcolor !rounded-bl-md !rounded-br-md flex"
                       href="{{route('logout')}}"><i class="bx bx-log-out text-[1.125rem] me-2 opacity-[0.7]"></i>logout</a>
                   </li>

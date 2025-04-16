@@ -25,11 +25,12 @@ class User extends Authenticatable
         'name',
         'email',
         'telepon',
-        'alamat',
+        'jenkel',
         'password',
+        'outlet_id',
         'role',
         'foto_profile',
-        
+
     ];
 
     /**
@@ -51,5 +52,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'status' => UserStatus::class,
     ];
-    
+    public function outlet()
+{
+    return $this->belongsTo(Outlet::class, 'outlet_id', 'id');
+}
+
 }
