@@ -27,7 +27,7 @@ class UserRequestUpdate extends FormRequest
             'email' => 'nullable|email|unique:users,email',
             'telepon' => 'nullable|string|max:15',
             'jenkel' => 'nullable|in:Laki-laki,Perempuan',
-            'role' => 'nullable|in:admin,kasir,owner',
+            'role' => 'nullable|in:admin,kasir,supervisor,waiters,kitchen,pelanggan',
             'password' => 'sometimes|nullable|min:8|confirmed',
             'password_confirmation' => 'sometimes|min:8',
            'foto_profile' => 'nullable|image|mimes:jpg,jpeg,png',

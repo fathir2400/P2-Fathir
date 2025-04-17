@@ -12,7 +12,7 @@ $setting = DB::table('setting')->first();
     <div class="text-center mb-6">
         <h2 class="font-semibold text-2xl text-gray-800">Invoice</h2>
     </div>
-    
+
     <div class="flex justify-between items-center mb-6">
         <div>
         <img src="{{asset('storage/logo/'. $setting->logo) }}" width="50">
@@ -27,29 +27,31 @@ $setting = DB::table('setting')->first();
             </button>
         </div>
     </div>
-    
+
     <div class="overflow-hidden border rounded-lg shadow-sm">
         <table class="min-w-full border-collapse border border-gray-200 bg-white">
             <thead>
                 <tr class="bg-gray-100 text-left">
-                <th scope="col" class="text-start">No</th>
-                                                <th scope="col" class="text-start">Nama</th>
-                                                <th scope="col" class="text-start">Email</th>
-                                                <th scope="col" class="text-start">Telepon</th>
-                                                <th scope="col" class="text-start">Alamat</th>
-                                                <th scope="col" class="text-start">foto</th>
-                                                <th scope="col" class="text-start">Role</th>
-                                                
-                                            </tr>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama</th>
+                        <th>Email</th>
+                        <th>Telepon</th>
+                        <th>Jenkel</th>
+                        <th>Outlet</th>
+                        <th>Foto</th>
+                        <th>Role</th>
+                        
+                    </tr>
                                         </thead>
                                         <tbody>
                                         @foreach ($users as $key =>$item)
                                             <tr class="border-b border-defaultborder">
                                             <td>{{ $key + 1}}</td>
-                                            <td>{{ $item->name }}</td>  
+                                            <td>{{ $item->name }}</td>
                                             <td>{{ $item->email }}</td>
                                             <td>{{ $item->telepon }}</td>
-                                            <td>{{ $item->alamat }}</td> 
+                                            <td>{{ $item->alamat }}</td>
                                             <td>
                                             <img src="{{asset('storage/foto-profile/'. $item->foto_profile) }}" width="50" height="50" alt="Foto_profile">
                                             </td>

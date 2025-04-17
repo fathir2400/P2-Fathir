@@ -26,7 +26,7 @@ class UserRequest extends FormRequest
         'email' => 'required|email|unique:users,email',
         'telepon' => 'required|string|max:15',
         'jenkel' => 'required|in:Laki-laki,Perempuan',
-        'role' => 'required|in:admin,kasir,owner',
+        'role' => 'required|in:admin,kasir,supervisor,waiters,kitchen,pelanggan',
         'password' => 'required|string|min:6|confirmed',
         'foto_profile' => 'nullable|image|mimes:jpg,jpeg,png',
         'outlet_id' => 'required|exists:outlets,id', // <-- Tambahkan baris ini

@@ -29,40 +29,76 @@ class UserController extends Controller
     $outlets = Outlet::all(); // ambil semua outlet dari database
     return view('user.create', compact('outlets'));
 }
+private function getUsersByRoleAndOutlet($role)
+{
+    $currentUser = auth()->user();
+
+    return User::with('outlet')
+        ->where('role', $role)
+        ->where('outlet_id', $currentUser->outlet_id)
+        ->orderBy('name')
+        ->paginate(10);
+}
+
 public function listAdmins()
 {
-    $admins = User::with('outlet')->where('role', 'admin')->orderBy('name')->paginate(10);
+    $currentUser = auth()->user();
+
+    $admins = $this->getUsersByRoleAndOutlet('admin');
     $outlets = Outlet::all();
     return view('user.list_admin', compact('admins', 'outlets'));
 }
 
 public function listSupervisor()
 {
-    $supervisors = User::with('outlet')->where('role', 'supervisor')->orderBy('name')->paginate(10);
+    $currentUser = auth()->user();
+
+    $supervisors = $this->getUsersByRoleAndOutlet('supervisor');
+
+
     $outlets = Outlet::all();
     return view('user.list_supervisor', compact('supervisors', 'outlets'));
+
 }
+
 public function listKasir()
 {
-    $kasirs = User::with('outlet')->where('role', 'kasir')->orderBy('name')->paginate(10); // Ambil data user + relasi outlet
-    $outlets = Outlet::all(); // Ambil semua outlet
-    return view('user.list_kasir', compact('kasirs', 'outlets')); // Kirim ke view
+    $currentUser = auth()->user();
+    $kasirs = $this->getUsersByRoleAndOutlet('kasir');
+
+    // Jika admin, tampilkan semua kasir, kalau bukan hanya yang satu cabang
+
+    $outlets = Outlet::all();
+    return view('user.list_kasir', compact('kasirs', 'outlets'));
 }
+
 public function listKitchen()
 {
-    $kitchens = User::with('outlet')->where('role', 'kitchen')->orderBy('name')->paginate(10);
+    $currentUser = auth()->user();
+
+    $kitchens = $this->getUsersByRoleAndOutlet('kitchen');
+
+
     $outlets = Outlet::all();
     return view('user.list_kitchen', compact('kitchens', 'outlets'));
 }
 public function listWaiters()
 {
-    $waiters = User::with('outlet')->where('role', 'waiters')->orderBy('name')->paginate(10);
+    $currentUser = auth()->user();
+
+    $waiters = $this->getUsersByRoleAndOutlet('waiters');
+
+
     $outlets = Outlet::all();
     return view('user.list_waiters', compact('waiters', 'outlets'));
 }
 public function listPelanggan()
 {
-    $pelanggans = User::with('outlet')->where('role', 'pelanggan')->orderBy('name')->paginate(10);
+    $currentUser = auth()->user();
+
+    $pelanggans = $this->getUsersByRoleAndOutlet('pelanggan');
+
+
     $outlets = Outlet::all();
     return view('user.list_pelanggan', compact('pelanggans', 'outlets'));
 }
@@ -138,9 +174,10 @@ public function store(UserRequest $request)
         $user = User::find($id);
         if($user) {
             $user->delete();
-            return redirect('/Users')->with('succes', 'User deleted successfully');
+
+        return back()->with('success', 'User has been delete successfully');
         }else{
-            return redirect('/Users')->with('error', 'User not found');
+            return back()->with('error', 'User not found');
         }
     }
 
