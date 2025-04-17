@@ -26,7 +26,7 @@
             <div class="box custom-box shadow-lg rounded-md">
                 <div class="box-header flex justify-between">
                     <h3 class="text-lg font-semibold text-gray-700">Daftar User</h3>
-                    <a href="{{ route('Users.invoice') }}" class="ti-btn ti-btn-secondary-full" style="padding: 2px 6px; font-size: 0.75rem;">
+                    <a href="{{ route('witers.invoice') }}" class="ti-btn ti-btn-secondary-full" style="padding: 2px 6px; font-size: 0.75rem;">
                         Invoice
                         <i class="fe fe-arrow-right rtl:rotate-180 ms-1 rtl:ms-0 align-middle"></i>
                     </a>

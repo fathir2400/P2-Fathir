@@ -69,6 +69,15 @@ Route::get('/kitchens',[UserController::class,'listKitchen'])->name('list_kitche
 Route::get('/waiters',[UserController::class,'listWaiters'])->name('list_waiters');
 Route::get('/pelanggans',[UserController::class,'listPelanggan'])->name('list_pelanggan');
 
+//invoice
+Route::get('/admin_invoice', [UserController::class, 'showAdmin'])->name('admin.invoice');
+Route::get('/kasir_invoice', [UserController::class, 'showkasir'])->name('kasir.invoice');
+Route::get('/kitchen_invoice', [UserController::class, 'showKitchen'])->name('kitchen.invoice');
+Route::get('/waiters_invoice', [UserController::class, 'showWaiters'])->name('waiters.invoice');
+Route::get('/supervisor_invoice', [UserController::class, 'showSupervisor'])->name('supervisor.invoice');
+Route::get('/pelanggan_invoice', [UserController::class, 'showPelanggan'])->name('pelanggan.invoice');
+
+
 // Route::get('/siswa/{kode_kelas}',[UserController::class,'view'])->name('siswa.view');
 // Route::get('/siswa/invoice',[MetodeController::class,'show'])->name('siswa.invoice');
 

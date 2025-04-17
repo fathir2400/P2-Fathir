@@ -194,4 +194,56 @@ public function store(UserRequest $request)
         $users = User::get();
         return view('user.invoice',compact('users'));
        }
+       public function showAdmin(Request $request)
+       {
+        $currentUser = auth()->user();
+
+        $admins = $this->getUsersByRoleAndOutlet('admin');
+        //    $admins = User::where('role', 'admin')->get();
+           return view('user.invoice_admin', compact('admins'));
+       }
+       public function showKasir(Request $request)
+       {
+        $currentUser = auth()->user();
+        $kasirs = $this->getUsersByRoleAndOutlet('kasir');
+        //    $kasirs = User::where('role', 'kasir')->get();
+           return view('user.invoice_kasir', compact('kasirs'));
+       }
+       public function showSupervisor(Request $request)
+       {
+        $currentUser = auth()->user();
+
+        $supervisors = $this->getUsersByRoleAndOutlet('supervisor');
+        //    $supervisors = User::where('role', 'supervisor')->get();
+           return view('user.invoice_supervisor', compact('supervisors'));
+       }
+       public function showKitchen(Request $request)
+       {
+        $currentUser = auth()->user();
+
+        $kitchens = $this->getUsersByRoleAndOutlet('kitchen');
+
+        //    $kitchens = User::where('role', 'kitchen')->get();
+           return view('user.invoice_kitchen', compact('kitchens'));
+       }
+       public function showWaiters(Request $request)
+       {
+        $currentUser = auth()->user();
+
+        $waiters = $this->getUsersByRoleAndOutlet('waiters');
+
+        //    $waiters = User::where('role', 'waiters')->get();
+           return view('user.invoice_waiters', compact('waiters'));
+       }
+       public function showPelanggan(Request $request)
+       {
+        $currentUser = auth()->user();
+
+        $pelanggans = $this->getUsersByRoleAndOutlet('pelanggan');
+
+        //    $pelanggans = User::where('role', 'pelanggan')->get();
+           return view('user.invoice_pelanggan', compact('pelanggans'));
+       }
+
+
 }

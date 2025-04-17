@@ -67,6 +67,7 @@
                                                 <th scope="col" class="text-start">Email</th>
                                                 <th scope="col" class="text-start">Telepon</th>
                                                 <th scope="col" class="text-start">Jenkel</th>
+                                                <th scope="col" class="text-start">Outlet</th>
                                                 <th scope="col" class="text-start">foto</th>
                                                 <th scope="col" class="text-start">Role</th>
                                                 <th scope="col" class="text-start">Action</th>
