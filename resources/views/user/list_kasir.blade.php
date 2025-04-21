@@ -133,19 +133,12 @@
 
                         <div class="mb-3">
                             <label class="form-label font-medium">Role</label>
-                            <select class="form-control" id="role" name="role" required>
-
-                                <option value="kasir">Kasir</option>
-                            </select>
+                            <input type="text" class="form-control" name="role" value="kasir" readonly>
                         </div>
                         <div class="mb-3">
                             <label class="form-label font-medium">Outlet</label>
-                        <select class="form-control" name="outlet_id" required>
-                            <option value="">-- Pilih Outlet --</option>
-                            @foreach ($outlets as $outlet)
-                                <option value="{{ $outlet->id }}">{{ $outlet->nama_outlet }}</option>
-                            @endforeach
-                        </select>
+                            <input type="text" class="form-control" value="{{ $outlets->first()->nama_outlet }}" readonly>
+                            <input type="hidden" name="outlet_id" value="{{ $outlets->first()->id }}">
                         </div>
                         <div class="mb-3">
                             <label class="form-label font-medium">Password</label>

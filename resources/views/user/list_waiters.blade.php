@@ -26,7 +26,7 @@
             <div class="box custom-box shadow-lg rounded-md">
                 <div class="box-header flex justify-between">
                     <h3 class="text-lg font-semibold text-gray-700">Daftar User</h3>
-                    <a href="{{ route('witers.invoice') }}" class="ti-btn ti-btn-secondary-full" style="padding: 2px 6px; font-size: 0.75rem;">
+                    <a href="{{ route('waiters.invoice') }}" class="ti-btn ti-btn-secondary-full" style="padding: 2px 6px; font-size: 0.75rem;">
                         Invoice
                         <i class="fe fe-arrow-right rtl:rotate-180 ms-1 rtl:ms-0 align-middle"></i>
                     </a>
@@ -132,21 +132,13 @@
                         </div>
 
                         <div class="mb-3">
-
                             <label class="form-label font-medium">Role</label>
-                            <select class="form-control" id="role" name="role" required>
-
-                                <option value="waiters">Waiters</option>
-                            </select>
+                            <input type="text" class="form-control" name="role" value="waiters" readonly>
                         </div>
                         <div class="mb-3">
                             <label class="form-label font-medium">Outlet</label>
-                        <select class="form-control" name="outlet_id" required>
-                            <option value="">-- Pilih Outlet --</option>
-                            @foreach ($outlets as $outlet)
-                                <option value="{{ $outlet->id }}">{{ $outlet->nama_outlet }}</option>
-                            @endforeach
-                        </select>
+                            <input type="text" class="form-control" value="{{ $outlets->first()->nama_outlet }}" readonly>
+                            <input type="hidden" name="outlet_id" value="{{ $outlets->first()->id }}">
                         </div>
                         <div class="mb-3">
                             <label class="form-label font-medium">Password</label>

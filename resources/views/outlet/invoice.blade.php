@@ -12,7 +12,7 @@ $setting = DB::table('setting')->first();
     <div class="text-center mb-6">
         <h2 class="font-semibold text-2xl text-gray-800">Invoice</h2>
     </div>
-    
+
     <div class="flex justify-between items-center mb-6">
         <div>
         <img src="{{asset('storage/logo/'. $setting->logo) }}" width="50">
@@ -27,25 +27,32 @@ $setting = DB::table('setting')->first();
             </button>
         </div>
     </div>
-    
+
     <div class="overflow-hidden border rounded-lg shadow-sm">
         <table class="min-w-full border-collapse border border-gray-200 bg-white">
             <thead>
                 <tr class="bg-gray-100 text-left">
-                <th scope="col" class="text-start">No</th>
-                                                <th scope="col" class="text-start">Kode kategori</th>
-                                                <th scope="col" class="text-start">Nama</th>
-                                                <th scope="col" class="text-start">Keterangan</th>
-                                               
+                    <th>No</th>
+                    <th>Nama Outlet</th>
+                    <th>Alamat</th>
+                    <th>Kecamatan</th>
+                    <th>Kota</th>
+                    <th>Provinsi</th>
+                    <th>Kode Pos</th>
+
+
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach ($kategori as $key =>$item)
+                                        @foreach ($outlet as $key =>$item)
                                             <tr class="border-b border-defaultborder">
-                                            <td>{{ $key + 1}}</td>
-                                            <td>{{ $item->kode_kategori }}</td>
-                                            <td>{{ $item->nama }}</td>  
-                                            <td>{{ $item->keterangan }}</td>
+                                                <td>{{ $key + 1 }}</td>
+                                                <td>{{ $item->nama_outlet }}</td>
+                                                <td>{{ $item->alamat }}</td>
+                                                <td>{{ $item->kecamatan }}</td>
+                                                <td>{{ $item->kota }}</td>
+                                                <td>{{ $item->provinsi }}</td>
+                                                <td>{{ $item->kode_pos }}</td>
                 </tr>
                 @endforeach
             </tbody>

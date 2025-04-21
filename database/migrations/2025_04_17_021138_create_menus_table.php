@@ -13,6 +13,15 @@ return new class extends Migration
     {
         Schema::create('menus', function (Blueprint $table) {
             $table->id();
+            $table->string('nama_menu');
+            $table->text('deskripsi')->nullable();
+            $table->unsignedBigInteger('kategori_id');
+            $table->foreign('kategori_id')->references('id_kategori')->on('kategoris')->onDelete('cascade');
+
+            $table->decimal('harga', 10, 2);
+            $table->integer('stok')->default(0);
+            $table->string('gambar')->nullable(); // untuk upload foto menu
+            $table->foreignId('outlet_id')->constrained('outlets')->onDelete('cascade');
             $table->timestamps();
         });
     }

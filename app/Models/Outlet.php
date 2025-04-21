@@ -23,4 +23,8 @@ class Outlet extends Model
     {
         return $this->hasMany(User::class, 'outlet_id');
     }
+    public function menu()
+    {
+        return $this->hasMany(Menu::class, 'outlet_id');
+    }
 }

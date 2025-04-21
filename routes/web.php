@@ -9,10 +9,12 @@ use App\Http\Controllers\BmsparepartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JamkerjaController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\MenuController;
 use App\Http\Controllers\MerkController;
 use App\Http\Controllers\OutletController;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\PengajuanController;
+use App\Http\Controllers\PromoController;
 use App\Http\Controllers\RuanganController;
 use App\Http\Controllers\satuanController;
 use App\Http\Controllers\ServisController;
@@ -91,9 +93,13 @@ Route::resource('/kategori',KategoriController::class);
 Route::get('/kategori/invoice',[KategoriController::class,'show'])->name('kategori.invoice');
 
 Route::resource('outlet', OutletController::class);
+Route::get('/outlet/invoice',[OutletController::class,'show'])->name('outlet.invoice');
 
+Route::resource('/menu',MenuController::class);
+Route::get('/menu/invoice',[MenuController::class,'show'])->name('menu.invoice');
 
-
+Route::resource('/promo',PromoController::class);
+Route::get('/promo/invoice',[PromoController::class,'show'])->name('promo.invoice');
 // Route::get('/', function () {
 //     return view('frontend.master');
 // });

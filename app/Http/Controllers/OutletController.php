@@ -64,4 +64,8 @@ class OutletController extends Controller
 
         return redirect()->route('outlet.index')->with('success', 'Outlet berhasil dihapus.');
     }
+    public function show(Request $request){
+        $outlet = Outlet::get();
+        return view('outlet.invoice',compact('outlet'));
+       }
 }

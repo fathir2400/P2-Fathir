@@ -58,7 +58,7 @@
                                 <td><img src="{{ asset('storage/foto-profile/'.$item->foto_profile) }}" width="50" height="50" alt="Foto"></td>
                                 <td>{{ $item->role }}</td>
                                 <td>
-                                    @if (in_array(auth()->user()->role, ['admin', 'supervisor']))
+                                    @if (in_array(auth()->user()->role, ['admin']))
                                     <div class="flex gap-2">
                                         <!-- Tombol edit -->
                                         <button type="button" class="ti-btn ti-btn-sm ti-btn-success-full edit-btn"
@@ -94,7 +94,7 @@
             </div>
         </div>
         <!-- End:: Table -->
-        @if (in_array(auth()->user()->role, ['admin', 'supervisor']))
+        @if (in_array(auth()->user()->role, ['admin'                                                                                                                                                                 ]))
         <!-- Start:: Form Tambah/Edit -->
         <div class="xl:col-span-4 col-span-12">
             <div class="box custom-box shadow-lg rounded-md">
@@ -132,22 +132,33 @@
                         </div>
 
                         <div class="mb-3">
-
                             <label class="form-label font-medium">Role</label>
-                            <select class="form-control" id="role" name="role" required>
+                            <input type="text" class="form-control" name="role" value="admin" readonly>
+                        </div>
 
-                                <option value="admin">Admin</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label font-medium">Outlet</label>
-                        <select class="form-control" name="outlet_id" required>
-                            <option value="">-- Pilih Outlet --</option>
-                            @foreach ($outlets as $outlet)
-                                <option value="{{ $outlet->id }}">{{ $outlet->nama_outlet }}</option>
-                            @endforeach
-                        </select>
-                        </div>
+                       <div class="col-md-6">
+    <label for="outlet_id" class="form-label">Outlet</label>
+
+    <!-- Hidden input agar nilai tetap terkirim -->
+    <input type="hidden" name="outlet_id" value="{{ old('outlet_id', isset($user) ? $user->outlet_id : auth()->user()->outlet_id) }}">
+
+    <!-- Disabled select hanya untuk tampilan -->
+    <select class="form-control" disabled>
+        @foreach($outlets as $outlet)
+            @if(auth()->user()->outlet_id == $outlet->id || auth()->user()->level == 'superadmin')
+                <option value="{{ $outlet->id }}"
+                    {{ old('outlet_id', isset($user) ? $user->outlet_id : auth()->user()->outlet_id) == $outlet->id ? 'selected' : '' }}>
+                    {{ $outlet->nama_outlet }}
+                </option>
+            @endif
+        @endforeach
+    </select>
+    @error('outlet_id') <div class="text-danger">{{ $message }}</div> @enderror
+</div>
+
+
+
+
                         <div class="mb-3">
                             <label class="form-label font-medium">Password</label>
                             <input type="password" class="form-control" name="password" required>

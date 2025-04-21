@@ -25,8 +25,8 @@ class UserController extends Controller
 
 
     public function create()
-{
-    $outlets = Outlet::all(); // ambil semua outlet dari database
+{   $user = auth()->user();
+    $outles = $user->outlet;  // ambil semua outlet dari database
     return view('user.create', compact('outlets'));
 }
 private function getUsersByRoleAndOutlet($role)
