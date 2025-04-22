@@ -98,4 +98,8 @@ class MenuController extends Controller
 
         return redirect()->route('menu.index')->with('success', 'Outlet berhasil dihapus.');
     }
+    public function show(Request $request){
+        $menu = menu::get();
+        return view('menu.invoice',compact('menu'));
+       }
 }

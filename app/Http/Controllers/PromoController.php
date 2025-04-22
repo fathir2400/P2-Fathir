@@ -12,64 +12,56 @@ class PromoController extends Controller
 {
     public function index()
     {
-        $user = auth()->user();
-        $query = Promo::with(['outlet', 'menu', 'kategori']);
-
-        if ($user->role !== 'admin_pusat') {
-            $query->where('outlet_id', $user->outlet_id);
-        }
-
-        $promos = $query->paginate(10);
-        $outlets = Outlet::all();
-        $menus = Menu::all(); // ✅ Tambah ini
-        $kategoris = Kategori::all(); // ✅ Dan ini
-
-        return view('promo.index', compact('promos', 'outlets', 'menus', 'kategoris'));
+        $promos = Promo::with('menu')->paginate(10);
+        $menus = Menu::all();
+        return view('promo.index', compact('promos', 'menus'));
     }
+
 
 
     public function store(Request $request)
     {
         $request->validate([
-            'judul_promo' => 'required|string|max:255',
-            'kode_promo' => 'required|string|max:50',
-            'tipe_promo' => 'required|in:persentase,nominal,beli1gratis1',
-            'nilai_promo' => 'required|numeric|min:0',
+            'nama_promo' => 'required|string|max:255',
+            'diskon' => 'required|numeric|min:1|max:100',
             'menu_id' => 'nullable|exists:menus,id',
-            'kategori_id' => 'nullable|exists:kategoris,id_kategori',
-            'outlet_id' => 'required|exists:outlets,id',
             'tanggal_mulai' => 'required|date',
-            'tanggal_selesai' => 'required|date',
-            'status' => 'required|boolean',
+            'tanggal_akhir' => 'required|date|after_or_equal:tanggal_mulai',
         ]);
 
-        Promo::create($request->all());
+        Promo::create([
+            'nama_promo' => $request->nama_promo,
+            'diskon' => $request->diskon,
+            'menu_id' => $request->menu_id,
+            'tanggal_mulai' => $request->tanggal_mulai,
+            'tanggal_akhir' => $request->tanggal_akhir,
+        ]);
 
-        return redirect()->back()->with('success', 'Promo berhasil ditambahkan.');
+        return redirect()->route('promo.index')->with('success', 'Promo berhasil ditambahkan');
     }
 
-
-
     public function update(Request $request, $id)
-{
-    $request->validate([
-        'judul_promo' => 'required|string|max:255',
-        'kode_promo' => 'required|string|max:50',
-        'tipe_promo' => 'required|in:persentase,nominal,beli1gratis1',
-        'nilai_promo' => 'required|numeric|min:0',
-        'menu_id' => 'nullable|exists:menus,id',
-        'kategori_id' => 'nullable|exists:kategoris,id_kategori',
-        'outlet_id' => 'required|exists:outlets,id',
-        'tanggal_mulai' => 'required|date',
-        'tanggal_selesai' => 'required|date',
-        'status' => 'required|boolean',
-    ]);
+    {
+        $promo = Promo::findOrFail($id);
 
-    $promo = Promo::findOrFail($id);
-    $promo->update($request->all());
+        $request->validate([
+            'nama_promo' => 'required|string|max:255',
+            'diskon' => 'required|numeric|min:1|max:100',
+            'menu_id' => 'nullable|exists:menus,id',
+            'tanggal_mulai' => 'required|date',
+            'tanggal_akhir' => 'required|date|after_or_equal:tanggal_mulai',
+        ]);
 
-    return redirect()->back()->with('success', 'Promo berhasil diperbarui.');
-}
+        $promo->update([
+            'nama_promo' => $request->nama_promo,
+            'diskon' => $request->diskon,
+            'menu_id' => $request->menu_id,
+            'tanggal_mulai' => $request->tanggal_mulai,
+            'tanggal_akhir' => $request->tanggal_akhir,
+        ]);
+
+        return redirect()->route('promo.index')->with('success', 'Promo berhasil diperbarui');
+    }
 
 
     public function destroy($id)
@@ -79,4 +71,8 @@ class PromoController extends Controller
 
         return redirect()->back()->with('success', 'Promo berhasil dihapus.');
     }
+    public function show(Request $request){
+        $promo = promo::get();
+        return view('promo.invoice',compact('promo'));
+       }
 }

@@ -9,6 +9,7 @@ use App\Http\Controllers\BmsparepartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JamkerjaController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\MejaController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\MerkController;
 use App\Http\Controllers\OutletController;
@@ -100,6 +101,9 @@ Route::get('/menu/invoice',[MenuController::class,'show'])->name('menu.invoice')
 
 Route::resource('/promo',PromoController::class);
 Route::get('/promo/invoice',[PromoController::class,'show'])->name('promo.invoice');
+
+Route::resource('/meja',MejaController::class);
+Route::get('/meja/invoice',[MejaController::class,'show'])->name('meja.invoice');
 // Route::get('/', function () {
 //     return view('frontend.master');
 // });
