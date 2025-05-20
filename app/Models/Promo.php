@@ -13,6 +13,7 @@ class Promo extends Model
         'menu_id',
         'nama_promo',
         'diskon',
+        'outlet_id',
         'tanggal_mulai',
         'tanggal_akhir',
     ];
@@ -23,5 +24,9 @@ class Promo extends Model
     public function menu()
     {
         return $this->belongsTo(Menu::class);
+    }
+    public function outlet()
+    {
+        return $this->belongsTo(Outlet::class);
     }
 }

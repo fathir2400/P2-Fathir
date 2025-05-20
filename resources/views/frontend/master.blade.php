@@ -14,7 +14,7 @@ $setting = DB::table('setting')->first();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Fathir - Ujikom </title>
+    <title>  Resto&Cafe</title>
     <meta name="description"
         content="A Tailwind CSS admin template is a pre-designed web page for an admin dashboard. Optimizing it for SEO includes using meta descriptions and ensuring it's responsive and fast-loading.">
     <meta name="keywords"
@@ -198,10 +198,10 @@ $setting = DB::table('setting')->first();
                     <nav class="main-menu-container nav nav-pills flex-column sub-open">
                         <div class="landing-logo-container my-auto hidden lg:block">
                             <div class="responsive-logo">
-                
+
 <img src="{{asset('storage/logo/'. $setting->logo) }}" width="50" height="50" alt="logo">
- 
-                           
+
+
                             </div>
                         </div>
                        <p class="font-semibold text-fixed-white" style="margin-left: -200px">  {{optional($setting)->nama_sekolah}}</p>
@@ -278,17 +278,17 @@ $setting = DB::table('setting')->first();
                             </li> -->
                             <!-- End::slide -->
                             <!-- Start::slide -->
-                            
+
                             <!-- End::slide -->
                             <!-- Start::slide -->
-                            
+
                             <!-- End::slide -->
                             <!-- Start::slide -->
-                            <li class="slide">
+                            {{-- <li class="slide">
                                 <a href="#contact" class="side-menu__item">
                                     <span class="side-menu__label">Contact</span>
                                 </a>
-                            </li>
+                            </li> --}}
                             <!-- End::slide -->
 
                         </ul>
@@ -318,15 +318,14 @@ $setting = DB::table('setting')->first();
                             <div class="xxl:col-span-8 xl:col-span-8 lg:col-span-8 md:col-span-8 col-span-10">
                                 <div class="py-4 pb-lg-0 text-center">
                                     <div class="mb-3">
-                                        <h4 class="font-semibold text-fixed-white op-9">SELAMAT DATANG</h4>
+                                        <h4 class="font-semibold text-fixed-white op-9">SELAMAT DATANG DI</h4>
                                     </div>
-                                    <p class="h2 landing-banner-heading mb-3 cursor-default" style="color:black"></p>
-                                    
-                                   
-                                    <a href="{{'admin'}}" class="m-1 ti-btn ti-btn-info-full">
-                                        Admin
-                                        <i class="fe fe-arrow-right rtl:rotate-180 ms-2 rtl:ms-0 align-middle"></i>
-                                    </a>
+                                    <p class="landing-banner-heading mb-3 cursor-default">Sistem Resto & Cafe <br>{{ optional($setting)->nama }}</p>
+                                    <p class="text-lg text-white">Restoran modern dengan sistem pemesanan digital — lebih nyaman dan teratur.</p>
+
+
+                                    <a href="{{url('login')}}" class="ti-btn w-[6.375rem] ti-btn-info-full m-0 p-2">Lanjutkan </a>
+
                                 </div>
                             </div>
                             <div class="xxl:col-span-2 xl:col-span-2 lg:col-span-2 md:col-span-2 col-span-1"></div>
@@ -789,7 +788,7 @@ $setting = DB::table('setting')->first();
                                                 <h6 class="font-semibold text-center text-[1rem]">ADVANCED</h6>
                                                 <div class="py-4 flex items-center justify-center">
                                                     <div class="pricing-svg1">
-                                                        <i class="bi bi-hand-thumbs-up"></i> 
+                                                        <i class="bi bi-hand-thumbs-up"></i>
                                                     </div>
                                                     <div class="text-end ms-[3rem]">
                                                         <p class="text-[1.5625rem] font-semibold mb-0">$499</p>
@@ -836,7 +835,7 @@ $setting = DB::table('setting')->first();
                                                 <h6 class="font-semibold text-center text-[1rem]">PREMIUM</h6>
                                                 <div class="py-4 flex items-center justify-center">
                                                     <div class="pricing-svg1">
-                                                        <i class="bi bi-gem"></i> 
+                                                        <i class="bi bi-gem"></i>
                                                     </div>
                                                     <div class="text-end ms-[3rem]">
                                                         <p class="text-[1.5625rem] font-semibold mb-0 !text-primary">
@@ -929,7 +928,7 @@ $setting = DB::table('setting')->first();
                                                 <h6 class="font-semibold text-center text-[1rem]">ADVANCED</h6>
                                                 <div class="py-4 flex items-center justify-center">
                                                     <div class="pricing-svg1">
-                                                        <i class="bi bi-hand-thumbs-up"></i> 
+                                                        <i class="bi bi-hand-thumbs-up"></i>
                                                     </div>
                                                     <div class="text-end ms-[3rem]">
                                                         <p class="text-[1.5625rem] font-semibold mb-0">$5,999</p>
@@ -976,7 +975,7 @@ $setting = DB::table('setting')->first();
                                                 <h6 class="font-semibold text-center text-[1rem]">PREMIUM</h6>
                                                 <div class="py-4 flex items-center justify-center">
                                                     <div class="pricing-svg1">
-                                                        <i class="bi bi-gem"></i> 
+                                                        <i class="bi bi-gem"></i>
                                                     </div>
                                                     <div class="text-end ms-[3rem]">
                                                         <p class="text-[1.5625rem] font-semibold mb-0 !text-primary">
@@ -1735,7 +1734,7 @@ $setting = DB::table('setting')->first();
             <!-- End:: Section-9 -->
 
             <!-- Start:: Section-10 -->
-            <section class="section text-defaulttextcolor dark:text-defaulttextcolor/70 text-[0.813rem]" id="contact">
+            {{-- <section class="section text-defaulttextcolor dark:text-defaulttextcolor/70 text-[0.813rem]" id="contact">
                 <div class="container text-center">
                     <p class="text-[0.75rem] font-semibold text-success mb-1"><span
                             class="landing-section-heading">CONTACT US</span>
@@ -1831,7 +1830,7 @@ $setting = DB::table('setting')->first();
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> --}}
             <!-- End:: Section-10 -->
 
             <!-- Start:: Section-11 -->
@@ -1954,7 +1953,7 @@ $setting = DB::table('setting')->first();
                 </div>
             </section> -->
             <!-- End:: Section-11 -->
-            <div class="text-center landing-main-footer py-4 opacity-[0.87]">
+            {{-- <div class="text-center landing-main-footer py-4 opacity-[0.87]">
                 <span class="text-[#8c9097] text-[0.9375rem]"> Copyright © <span id="year"></span> <a
                         href="javascript:void(0);" class="!text-primary font-semibold"><u>valex</u></a>.
                     Designed with <span class="fa fa-heart text-danger"></span> by <a href="javascript:void(0);"
@@ -1965,7 +1964,7 @@ $setting = DB::table('setting')->first();
                     reserved
                 </span>
             </div>
-        </div>
+        </div> --}}
         <!-- End::main-content -->
 
     </div>

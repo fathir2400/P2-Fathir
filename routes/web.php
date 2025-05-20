@@ -12,6 +12,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\MejaController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\MerkController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OutletController;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\PengajuanController;
@@ -104,6 +105,14 @@ Route::get('/promo/invoice',[PromoController::class,'show'])->name('promo.invoic
 
 Route::resource('/meja',MejaController::class);
 Route::get('/meja/invoice',[MejaController::class,'show'])->name('meja.invoice');
+
+Route::resource('/orders',OrderController::class);
+Route::get('/order/{order}/detail', [OrderController::class, 'detail'])->name('order.detail');
+Route::post('/orders/{order}/update-payment', [OrderController::class, 'updatePayment'])->name('orders.updatePayment');
+Route::post('/orders/{order}/cancel', [OrderController::class, 'cancel'])->name('orders.cancel');
+Route::get('/orders/{order}/print', [OrderController::class, 'print'])->name('orders.print');
+Route::get('/orders/invoice',[OrderController::class,'show'])->name('orders.invoice');
+
 // Route::get('/', function () {
 //     return view('frontend.master');
 // });

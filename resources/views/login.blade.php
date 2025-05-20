@@ -12,7 +12,7 @@ $setting = DB::table('setting')->first();
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Fathir -  Ujikom </title>
+    <title>  Resto&Cafe </title>
     <meta name="Description" content="Bootstrap Responsive Admin Web Dashboard HTML5 Template">
     <meta name="Author" content="Spruko Technologies Private Limited">
     <!-- Favicon -->
@@ -20,16 +20,16 @@ $setting = DB::table('setting')->first();
 
     <!-- Main Theme Js -->
     <script src="../assets/js/authentication-main.js"></script>
-  
+
     <!-- Style Css -->
     <link rel="stylesheet" href="../assets/css/style.css">
-  
+
     <!-- Simplebar Css -->
     <link id="style" href="../assets/libs/simplebar/simplebar.min.css" rel="stylesheet">
-  
+
     <!-- Color Picker Css -->
     <link rel="stylesheet" href="../assets/libs/%40simonwep/pickr/themes/nano.min.css">
-  
+
     <!-- Swiper Css -->
     <link rel="stylesheet" href="../assets/libs/swiper/swiper-bundle.min.css">
 
@@ -237,7 +237,7 @@ $setting = DB::table('setting')->first();
                 </div>
               </div>
             </div>
-           
+
           </div>
           <div id="switcher-2" class="hidden" role="tabpanel" aria-labelledby="switcher-item-2">
             <div class="theme-colors">
@@ -427,9 +427,9 @@ $setting = DB::table('setting')->first();
           </div>
         </div>
         <div class="ti-offcanvas-footer flex justify-between">
-          <a href="https://themeforest.net/item/valex-bootstrap-admin-dashboard-template/45551445" class="ti-btn ti-btn-primary-full m-1">Buy Now</a> 
-          <a href="https://themeforest.net/user/spruko/portfolio" class="ti-btn ti-btn-secondary-full m-1">Our Portfolio</a> 
-          <a href="javascript:void(0);" id="reset-all" class="ti-btn ti-btn-danger-full m-1">Reset</a> 
+          <a href="https://themeforest.net/item/valex-bootstrap-admin-dashboard-template/45551445" class="ti-btn ti-btn-primary-full m-1">Buy Now</a>
+          <a href="https://themeforest.net/user/spruko/portfolio" class="ti-btn ti-btn-secondary-full m-1">Our Portfolio</a>
+          <a href="javascript:void(0);" id="reset-all" class="ti-btn ti-btn-danger-full m-1">Reset</a>
         </div>
       </div>
     <!-- End Switcher -->
@@ -454,7 +454,7 @@ $setting = DB::table('setting')->first();
                                 @endforeach
                               </ul>
                             </div>
-                        @endif    
+                        @endif
                         <form action="" method="POST">
                           @csrf
                         <div class="grid grid-cols-12 gap-y-4">
@@ -465,10 +465,10 @@ $setting = DB::table('setting')->first();
                             <div class="xl:col-span-12 col-span-12">
                                 <label for="signin-password" class="form-label text-default block">Password</label>
                                 <div class="input-group">
-                               
+
                                 <input type="password"  name="password" class="form-control " placeholder="password">
                                 </div>
-                               
+
                             </div>
                             <div class="xl:col-span-12 col-span-12 grid">
                             <button class="ti-btn ti-btn-lg bg-primary text-white !font-medium dark:border-defaultborder/10" type="submit" name="submit">login</button>
@@ -478,7 +478,7 @@ $setting = DB::table('setting')->first();
                         <div class="text-center">
                             <p class="text-[0.75rem] text-[#8c9097] mt-4">Dont have an account? <a href="sign-up-basic.html" class="text-primary">Sign Up</a></p>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>

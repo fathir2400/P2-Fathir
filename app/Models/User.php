@@ -56,5 +56,9 @@ class User extends Authenticatable
 {
     return $this->belongsTo(Outlet::class, 'outlet_id', 'id');
 }
+public function orders()
+{
+    return $this->hasMany(Order::class, 'pelanggan_id');  // Pesanan yang dilakukan oleh pelanggan
+}
 
 }

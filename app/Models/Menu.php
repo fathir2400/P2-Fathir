@@ -32,4 +32,8 @@ public function kategori()
 {
     return $this->belongsTo(Kategori::class, 'kategori_id', 'id_kategori');
 }
+public function orderDetails()
+{
+    return $this->hasMany(Order_detail::class);
+}
 }

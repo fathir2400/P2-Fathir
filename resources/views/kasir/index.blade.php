@@ -12,7 +12,7 @@ $setting = DB::table('setting')->first();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Fathir - Ujikom </title>
+    <title> Resto&Cafe</title>
     <meta name="description" content="A Tailwind CSS admin template is a pre-designed web page for an admin dashboard. Optimizing it for SEO includes using meta descriptions and ensuring it's responsive and fast-loading.">
     <meta name="keywords" content="dashboard,admin dashboard,template dashboard,html,html dashboard,admin dashboard template,admin template,tailwind ui,admin panel,html and css,html admin template,tailwind framework,html css javascript,tailwind css dashboard,dashboard html css,admin,template admin panel,dashboard html template">
 
@@ -480,7 +480,7 @@ $setting = DB::table('setting')->first();
               id="notification-item" data-hs-tab="#notification" aria-controls="notification" role="tab">
               <i class="fe fe-bell text-[.9375rem] me-2 inline-flex"></i> Notifications
             </button>
-            
+
           </div>
         </ul>
         <div class="tab-content !border-0 ">
@@ -1082,7 +1082,7 @@ $setting = DB::table('setting')->first();
     <!--End modal -->
 
     <!-- Start::app-sidebar -->
-    
+
 
     </aside>
     <!-- End::app-sidebar -->
@@ -1094,7 +1094,7 @@ $setting = DB::table('setting')->first();
 
         <!-- Start::page-header -->
         <!-- Page Header -->
-       
+
 
 @section('content')
 <div class="md:flex block items-center justify-between mb-6 mt-[2rem]  page-header-breadcrumb">
@@ -1106,7 +1106,7 @@ $setting = DB::table('setting')->first();
                     href="javascript:void(0);"> Dashboard <i
                       class="ti ti-chevrons-right flex-shrink-0 mx-3 overflow-visible text-textmuted rtl:rotate-180"></i>
                   </a> </li>
-               
+
               </ol>
             </nav>
           </div>
@@ -1252,7 +1252,7 @@ $setting = DB::table('setting')->first();
         <!-- Page Header Close -->
         <!-- End::page-header -->
 
-        
+
 
       </div>
     </div>
@@ -1358,7 +1358,7 @@ $setting = DB::table('setting')->first();
     </div>
     <!-- ========== END Search Modal ========== -->
 
-    
+
 
 
   </div>
@@ -1399,7 +1399,7 @@ $setting = DB::table('setting')->first();
   <!-- CRM-Dashboard -->
   <script src="{{ asset('valex/js/ecommercedashboard.js') }}"></script>
 
-  
+
   <!-- Custom-Switcher JS -->
   <script src="{{ asset('valex/js/custom-switcher.js') }}"></script>
 

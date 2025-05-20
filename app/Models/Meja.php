@@ -13,7 +13,7 @@ class Meja extends Model
         'kapasitas',
         'status',
         'outlet_id',
-       
+
     ];
 
     /**
@@ -22,5 +22,8 @@ class Meja extends Model
     public function outlet()
     {
         return $this->belongsTo(Outlet::class);
+    }
+    public function meja() {
+        return $this->hasMany(Meja::class);
     }
 }

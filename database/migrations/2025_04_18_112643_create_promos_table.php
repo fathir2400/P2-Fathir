@@ -13,7 +13,8 @@ class CreatePromosTable extends Migration
             $table->foreignId('menu_id')->nullable()->constrained('menus')->nullOnDelete();
 
             $table->string('nama_promo');
-            $table->integer('diskon'); // dalam persen, misal 20 untuk 20%
+            $table->integer('diskon');
+            $table->foreignId('outlet_id')->constrained()->onDelete('cascade');// dalam persen, misal 20 untuk 20%
             $table->date('tanggal_mulai');
             $table->date('tanggal_akhir');
             $table->timestamps();

@@ -38,6 +38,7 @@
                                 <th>Nama Promo</th>
                                 <th>Diskon</th>
                                 <th>Menu</th>
+                                <th>Outlet</th>
                                 <th>Tanggal Mulai</th>
                                 <th>Tanggal Akhir</th>
                                 <th>Aksi</th>
@@ -50,8 +51,10 @@
                                 <td>{{ $promo->nama_promo }}</td>
                                 <td>{{ $promo->diskon }}%</td>
                                 <td>{{ $promo->menu ? $promo->menu->nama_menu : 'Semua Menu' }}</td>
+                                <td>{{ $promo->outlet->nama_outlet ?? '-' }}</td>
                                 <td>{{ $promo->tanggal_mulai }}</td>
                                 <td>{{ $promo->tanggal_akhir }}</td>
+
                                 <td>
                                     <div class="flex gap-2">
                                         <a href="javascript:void(0);" class="ti-btn ti-btn-sm ti-btn-success-full edit-btn"
@@ -60,7 +63,8 @@
                                             data-diskon="{{ $promo->diskon }}"
                                             data-menu_id="{{ $promo->menu_id }}"
                                             data-tanggal_mulai="{{ $promo->tanggal_mulai }}"
-                                            data-tanggal_akhir="{{ $promo->tanggal_akhir }}">
+                                            data-tanggal_akhir="{{ $promo->tanggal_akhir }}"
+                                            data-outlet_id="{{ $promo->outlet_id }}">
                                             <i class="ri-edit-line"></i>
                                         </a>
                                         <form action="{{ route('promo.destroy', $promo->id) }}" method="POST">
@@ -80,7 +84,7 @@
                 </div>
             </div>
         </div>
-
+        @if (in_array(auth()->user()->role, ['admin', 'supervisor','kasir','waiters']))
         <!-- Form Promo -->
         <div class="xl:col-span-4 col-span-12">
             <div class="box custom-box shadow-lg rounded-md">
@@ -122,6 +126,18 @@
                             <label for="tanggal_akhir">Tanggal Akhir</label>
                             <input type="date" name="tanggal_akhir" id="tanggal_akhir" class="form-control" required>
                         </div>
+                        @if(auth()->user()->role === 'admin_pusat')
+                        <div class="form-group mb-3">
+                            <label for="outlet_id">Outlet</label>
+                            <select name="outlet_id" id="outlet_id" class="form-control">
+                                @foreach($outlets as $outlet)
+                                    <option value="{{ $outlet->id }}">{{ $outlet->nama_outlet }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    @else
+                        <input type="hidden" name="outlet_id" id="outlet_id" value="{{ auth()->user()->outlet_id }}">
+                    @endif
 
                         <div class="flex justify-between gap-3 mt-4">
                             <button type="submit" class="ti-btn ti-btn-primary-full w-full">Simpan</button>
@@ -131,6 +147,7 @@
                 </div>
             </div>
         </div>
+        @endif
     </div>
 </div>
 
@@ -146,7 +163,10 @@ document.addEventListener('DOMContentLoaded', function () {
         diskon: document.getElementById('diskon'),
         menu_id: document.getElementById('menu_id'),
         tanggal_mulai: document.getElementById('tanggal_mulai'),
-        tanggal_akhir: document.getElementById('tanggal_akhir')
+        tanggal_akhir: document.getElementById('tanggal_akhir'),
+        outlet_id: document.getElementById('outlet_id'),
+
+
     };
 
     document.querySelectorAll('.edit-btn').forEach(button => {
@@ -160,6 +180,7 @@ document.addEventListener('DOMContentLoaded', function () {
             inputs.menu_id.value = this.dataset.menu_id;
             inputs.tanggal_mulai.value = this.dataset.tanggal_mulai;
             inputs.tanggal_akhir.value = this.dataset.tanggal_akhir;
+            inputs.outlet_id.value = this.dataset.outlet_id;
 
             formTitle.textContent = "Edit Promo";
         });

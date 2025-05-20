@@ -89,7 +89,7 @@
                 </div>
             </div>
         </div>
-
+        @if (in_array(auth()->user()->role, ['admin', 'supervisor','kasir','waiters']))
         <!-- Form Tambah/Edit -->
         <div class="xl:col-span-4 col-span-12">
             <div class="box custom-box shadow-lg rounded-md">
@@ -156,6 +156,7 @@
                 </div>
             </div>
         </div>
+        @endif
     </div>
 </div>
 
